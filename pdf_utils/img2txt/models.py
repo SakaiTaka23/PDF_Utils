@@ -8,4 +8,6 @@ class Image(models.Model):
     task_id = models.CharField(unique=True, null=True)
 
     def __str__(self):
-        return self.title
+        return self.task_id
+
+    
