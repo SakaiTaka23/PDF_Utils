@@ -5,7 +5,7 @@
     {% for download in download_list %}
     {# <a href="{% url 'img2txt:download' download.pk %}">{{ download }}</a> #}
     <a href='#'>Download</a>
-    <input type="checkbox" name="zip" value="{{ download.pk }}">
+    <input type="checkbox" name="zip" value="{{ download }}" checked>
     <hr>
     {% endfor %}
     <button type="submit">ZIPダウンロード</button>

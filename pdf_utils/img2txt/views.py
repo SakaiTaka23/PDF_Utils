@@ -1,4 +1,4 @@
-from django.http import request, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 import zipfile
@@ -52,16 +52,19 @@ def show_uploaded(request, task_id):
 
 
 def download_zip(request):
-    # <input type="checkbox" name="zip"のnameに対応
     file_pks = request.POST.getlist('zip')
-    upload_files = Image.objects.filter(pk__in=file_pks)
-
+    # print('file_pks', file_pks)
+    # file_pks['media/img2txt/184ddecfb7c5f9c48e7f_2.txt',
+    #          'media/img2txt/184ddecfb7c5f9c48e7f_1.txt']
     response = HttpResponse(content_type='application/zip')
-    file_zip = zipfile.ZipFile(response, 'w')
-    for upload_file in upload_files:
-        file_zip.writestr(upload_file.file.name, upload_file.file.read())
+
+    with zipfile.ZipFile(response, 'w', compression=zipfile.ZIP_DEFLATED) as new_zip:
+        count = '1'
+        for file_pk in file_pks:
+            new_zip.write(file_pk, arcname=count+'.txt')
+            count = str(int(count)+1)
 
     # Content-Dispositionでダウンロードの強制
-    response['Content-Disposition'] = 'attachment; filename="txt.zip"'
+    response['Content-Disposition'] = 'attachment; filename="result_txt.zip"'
 
     return response
