@@ -18,13 +18,16 @@ def upload(request):
         if form.is_valid():
             images = request.FILES.getlist('image', False)
             task_id = form.cleaned_data.get('task_id')
+            index = '1'
             print('task_id:', task_id)
             for image in images:
+                image.name = task_id+'_'+index+'.jpg'
                 image_instance = Image(
                     image=image,
                     task_id=task_id,
                 )
                 image_instance.save()
+                index = str(int(index)+1)
             img2txt.img2txt(task_id)
             # form.save()
             return redirect('img2txt:showall')
