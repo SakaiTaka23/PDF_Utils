@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'm3!u46d10toyf*a+)w2mv+0do!w_wp!k09w=nu(gpk-6nnt#7r'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'pdf_utils.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pdf_utils',  # 作成したデータベース名
-        'USER': 'fumi',  # ログインユーザー名
-        'PASSWORD': 'abc123',  # DBへ接続するユーザIDのパスワードを設定
+        'NAME': '',  # 作成したデータベース名
+        'USER': '',  # ログインユーザー名
+        'PASSWORD': '',  # DBへ接続するユーザIDのパスワードを設定
         # 'HOST': 'localhost',
         # 'PORT': '3306',
     }
